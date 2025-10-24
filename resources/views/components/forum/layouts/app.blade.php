@@ -11,8 +11,9 @@
     <div class="px-4 border-b border-neutral-800">
         <x-forum.navbar />
     </div>
-    
+
     <div class="mx-auto max-w-4xl px-4 pb-8">
+        <x-alert />
         {{ $slot }}
     </div>
 </body>

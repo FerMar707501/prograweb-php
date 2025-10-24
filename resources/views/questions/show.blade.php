@@ -16,19 +16,23 @@
                {{ $question->created_at->diffForHumans() }}
             </p>
 
-            <div class="flex items-center gap-2">
-                <a href="#" class="text-xs font-semibold hover:underline">
-                    Edit
-                </a>
-                
-                <form action="{{ route('questions.destroy', $question) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta pregunta?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="rounded-md bg-red-600 hover:bg-red-500 px-2 py-1 text-xs font-semibold text-white cursor-pointer">
-                        Eliminar
-                    </button>
-                </form>
-            </div>
+            @auth
+                @if(auth()->id() === $question->user_id)
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('questions.edit', $question) }}" class="rounded-md bg-blue-600 hover:bg-blue-500 px-2 py-1 text-xs font-semibold text-white">
+                            Editar
+                        </a>
+
+                        <form action="{{ route('questions.destroy', $question) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta pregunta?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="rounded-md bg-red-600 hover:bg-red-500 px-2 py-1 text-xs font-semibold text-white cursor-pointer">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
 </div>

@@ -36,8 +36,9 @@
             </div>
         </div>
     </div>
-    
+
     <div class="mx-auto max-w-4xl px-4 mb-8">
+        <x-alert />
         {{ $slot }}
     </div>
 </body>

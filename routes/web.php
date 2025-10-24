@@ -9,11 +9,13 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 
 Route::get('/',[PageController::class,'index'])->name('home');
-Route::get('/questions/create',[QuestionController::class,'create'])->middleware('auth')->name('questions.create');
-Route::post('/questions',[QuestionController::class,'store'])->middleware('auth')->name('questions.store');
+Route::get('/questions/create',[QuestionController::class,'create'])->name('questions.create');
+Route::post('/questions',[QuestionController::class,'store'])->name('questions.store');
 Route::get('/question/{question}',[QuestionController::class,'show'])->name('question.show');
-Route::post('/answers/{question}',[AnswerController::class,'store'])->name('answers.store');
+Route::get('/questions/{question}/edit',[QuestionController::class,'edit'])->name('questions.edit');
+Route::put('/questions/{question}',[QuestionController::class,'update'])->name('questions.update');
 Route::delete('/questions/{question}',[QuestionController::class,'destroy'])->name('questions.destroy');
+Route::post('/answers/{question}',[AnswerController::class,'store'])->name('answers.store');
 
 
 
