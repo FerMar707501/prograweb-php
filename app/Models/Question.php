@@ -11,6 +11,13 @@ class Question extends Model
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
     use HasFactory , HasHeart;
 
+    protected $fillable = [
+        'title',
+        'content',
+        'category_id',
+        'user_id',
+    ];
+
     public function comments(){
         return $this->morphMany(Comment::class, 'commentable');
     }
